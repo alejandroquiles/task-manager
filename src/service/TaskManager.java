@@ -7,4 +7,8 @@ public class TaskManager {
 	public TaskManager () {
 		this.tasks = new ArrayList<>();
 	}
+	public void addTask(String title) {
+		Task task = new Task(title);
+		this.tasks.add(task);
+	}
 }
