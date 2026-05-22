@@ -48,15 +48,21 @@ public class Main {
 						printTasks(taskManager);
 
 						System.out.print("Introduce el número de la tarea a completar: ");
-						int taskNumber = Integer.parseInt(scanner.nextLine());
-						int index = taskNumber - 1;
 
-						boolean completed = taskManager.completeTask(index);
+						try {
+							int taskNumber = Integer.parseInt(scanner.nextLine());
+							int index = taskNumber - 1;
 
-						if (completed) {
-							System.out.println("Tarea completada correctamente.");
-						} else {
-							System.out.println("Número de tarea no válido.");
+							boolean completed = taskManager.completeTask(index);
+
+							if (completed) {
+								System.out.println("Tarea completada correctamente.");
+							} else {
+								System.out.println("Número de tarea no válido.");
+							}
+
+						} catch (NumberFormatException e) {
+							System.out.println("Número no válido. Debes introducir un número.");
 						}
 					}
 					break;
