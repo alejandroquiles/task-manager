@@ -25,19 +25,33 @@ public class Main {
 				String option = scanner.nextLine();
 				
 				switch (option) {
+				
 				case "1":
-					System.out.println("Introduce el título de la tarea: ");
+					System.out.print("Introduce el título de la tarea: ");
 					String title = scanner.nextLine();
 					taskManager.addTask(title);
 					System.out.println("Tarea añadida correctamente.");
 					break;
+					
 				case "2":
-					System.out.println("Has elegido listar tareas");
+					if (taskManager.getTasks().isEmpty()) {
+						System.out.println("No hay tareas todavía.");
+					} else {
+						System.out.println("==== TAREAS ====");
+						System.out.println();
+
+						for (int i = 0; i < taskManager.getTasks().size(); i++) {
+							Task task = taskManager.getTasks().get(i);
+							System.out.println((i + 1) + ". " + task.getTitle());
+						}
+					}
 					break;
+					
 				case "3":
 					running = false;
 					System.out.println("Saliendo del programa...");
 					break;
+					
 				default:
 					System.out.println("Opción no válida");
 					break;
