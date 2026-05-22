@@ -11,8 +11,9 @@ public class Main {
 		TaskManager taskManager = new TaskManager();
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
-		while(running){
 		
+		while(running){
+			
 				System.out.println("==== TASK MANAGER ====");
 				System.out.println();
 				System.out.println("1. Añadir tarea");
@@ -22,9 +23,13 @@ public class Main {
 				System.out.print("Elige una opción: ");
 
 				String option = scanner.nextLine();
+				
 				switch (option) {
 				case "1":
-					System.out.println("Has elegido añadir tarea");
+					System.out.println("Introduce el título de la tarea: ");
+					String title = scanner.nextLine();
+					taskManager.addTask(title);
+					System.out.println("Tarea añadida correctamente.");
 					break;
 				case "2":
 					System.out.println("Has elegido listar tareas");
@@ -39,10 +44,10 @@ public class Main {
 				}
 				
 			}
-			
+		scanner.close();
 		}
 		
-		}
+	}
 
 
 
