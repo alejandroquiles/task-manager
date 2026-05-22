@@ -44,7 +44,15 @@ public class Main {
 
 						for (int i = 0; i < taskManager.getTasks().size(); i++) {
 							Task task = taskManager.getTasks().get(i);
-							System.out.println((i + 1) + ". " + task.getTitle());
+							String status;
+
+							if (task.isCompleted()) {
+								status = "Completada";
+							} else {
+								status = "Pendiente";
+							}
+
+							System.out.println((i + 1) + ". [" + status + "] " + task.getTitle());
 						}
 					}
 					break;
@@ -58,7 +66,15 @@ public class Main {
 
 						for (int i = 0; i < taskManager.getTasks().size(); i++) {
 							Task task = taskManager.getTasks().get(i);
-							System.out.println((i + 1) + ". " + task.getTitle());
+							String status;
+
+							if (task.isCompleted()) {
+								status = "Completada";
+							} else {
+								status = "Pendiente";
+							}
+
+							System.out.println((i + 1) + ". [" + status + "] " + task.getTitle());
 						}
 
 						System.out.print("Introduce el número de la tarea a completar: ");
