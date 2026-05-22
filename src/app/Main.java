@@ -18,7 +18,9 @@ public class Main {
 				System.out.println();
 				System.out.println("1. Añadir tarea");
 				System.out.println("2. Listar tareas");
-				System.out.println("3. Salir");
+				System.out.println("3. Marcar tarea como completada");
+				System.out.println("4. Salir");
+				
 				System.out.println();
 				System.out.print("Elige una opción: ");
 
@@ -48,6 +50,32 @@ public class Main {
 					break;
 					
 				case "3":
+					if (taskManager.getTasks().isEmpty()) {
+						System.out.println("No hay tareas para completar.");
+					} else {
+						System.out.println("==== TAREAS ====");
+						System.out.println();
+
+						for (int i = 0; i < taskManager.getTasks().size(); i++) {
+							Task task = taskManager.getTasks().get(i);
+							System.out.println((i + 1) + ". " + task.getTitle());
+						}
+
+						System.out.print("Introduce el número de la tarea a completar: ");
+						int taskNumber = Integer.parseInt(scanner.nextLine());
+						int index = taskNumber - 1;
+
+						boolean completed = taskManager.completeTask(index);
+
+						if (completed) {
+							System.out.println("Tarea completada correctamente.");
+						} else {
+							System.out.println("Número de tarea no válido.");
+						}
+					}
+					break;
+					
+				case "4":
 					running = false;
 					System.out.println("Saliendo del programa...");
 					break;
