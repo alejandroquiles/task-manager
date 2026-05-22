@@ -14,4 +14,13 @@ public class TaskManager {
 	public ArrayList<Task> getTasks() {
 		return this.tasks;
 	}
+	public boolean completeTask(int index) {
+		if (index < 0 || index >= this.tasks.size()) {
+			return false;
+		}
+
+		Task task = this.tasks.get(index);
+		task.markAsCompleted();
+		return true;
+	}
 }
