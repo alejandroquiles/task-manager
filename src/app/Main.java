@@ -33,8 +33,13 @@ public class Main {
 				case "1":
 					System.out.print("Introduce el título de la tarea: ");
 					String title = scanner.nextLine();
-					taskManager.addTask(title);
-					System.out.println("Tarea añadida correctamente.");
+
+					if (title.trim().isEmpty()) {
+						System.out.println("El título no puede estar vacío.");
+					} else {
+						taskManager.addTask(title);
+						System.out.println("Tarea añadida correctamente.");
+					}
 					break;
 					
 				case "2":
