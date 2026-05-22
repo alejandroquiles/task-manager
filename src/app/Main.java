@@ -1,12 +1,14 @@
 package app;
+
 import java.util.Scanner;
+
 import model.Task;
 import service.TaskManager;
 
 
 
 public class Main {
-
+		
 	public static void main(String[] args) {
 		TaskManager taskManager = new TaskManager();
 		Scanner scanner = new Scanner(System.in);
@@ -36,46 +38,14 @@ public class Main {
 					break;
 					
 				case "2":
-					if (taskManager.getTasks().isEmpty()) {
-						System.out.println("No hay tareas todavía.");
-					} else {
-						System.out.println("==== TAREAS ====");
-						System.out.println();
-
-						for (int i = 0; i < taskManager.getTasks().size(); i++) {
-							Task task = taskManager.getTasks().get(i);
-							String status;
-
-							if (task.isCompleted()) {
-								status = "Completada";
-							} else {
-								status = "Pendiente";
-							}
-
-							System.out.println((i + 1) + ". [" + status + "] " + task.getTitle());
-						}
-					}
+					printTasks(taskManager);
 					break;
 					
 				case "3":
 					if (taskManager.getTasks().isEmpty()) {
 						System.out.println("No hay tareas para completar.");
 					} else {
-						System.out.println("==== TAREAS ====");
-						System.out.println();
-
-						for (int i = 0; i < taskManager.getTasks().size(); i++) {
-							Task task = taskManager.getTasks().get(i);
-							String status;
-
-							if (task.isCompleted()) {
-								status = "Completada";
-							} else {
-								status = "Pendiente";
-							}
-
-							System.out.println((i + 1) + ". [" + status + "] " + task.getTitle());
-						}
+						printTasks(taskManager);
 
 						System.out.print("Introduce el número de la tarea a completar: ");
 						int taskNumber = Integer.parseInt(scanner.nextLine());
@@ -104,6 +74,29 @@ public class Main {
 			}
 		scanner.close();
 		}
+		
+	private static void printTasks(TaskManager taskManager) {
+		if (taskManager.getTasks().isEmpty()) {
+			System.out.println("No hay tareas todavía.");
+		} else {
+			System.out.println("==== TAREAS ====");
+			System.out.println();
+
+			for (int i = 0; i < taskManager.getTasks().size(); i++) {
+				Task task = taskManager.getTasks().get(i);
+
+				String status;
+
+				if (task.isCompleted()) {
+					status = "Completada";
+				} else {
+					status = "Pendiente";
+				}
+
+				System.out.println((i + 1) + ". [" + status + "] " + task.getTitle());
+			}
+		}
+	}
 		
 	}
 
