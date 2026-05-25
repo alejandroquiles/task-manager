@@ -58,15 +58,15 @@ public class TaskManagerFrame extends JFrame {
 			String title = this.taskInput.getText();
 
 			if (title.trim().isEmpty()) {
-				System.out.println("El título no puede estar vacío.");
-			} else {
-				this.taskManager.addTask(title);
-				this.taskListModel.addElement("[Pendiente] " + title);
-				this.taskInput.setText("");
-				System.out.println("Tarea añadida: " + title);
+				JOptionPane.showMessageDialog(this, "El título no puede estar vacío.");
+				return;
 			}
+
+			this.taskManager.addTask(title);
+			this.taskListModel.addElement("[Pendiente] " + title);
+			this.taskInput.setText("");
+			this.taskInput.requestFocus();
 		});
-		
 		this.completeButton.addActionListener(e -> {
 			int selectedIndex = this.taskList.getSelectedIndex();
 
