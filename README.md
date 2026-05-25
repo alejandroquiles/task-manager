@@ -78,3 +78,7 @@ Durante el desarrollo se ha seguido un flujo progresivo, realizando commits por 
 Este proyecto forma parte de mi proceso de aprendizaje y práctica personal, construyendo una aplicación desde cero y evolucionándola paso a paso desde consola hasta interfaz gráfica.
 
 GitHub: [@alejandroquiles](https://github.com/alejandroquiles)
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT.
