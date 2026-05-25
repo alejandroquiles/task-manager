@@ -8,13 +8,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JOptionPane;
-import model.Task;
 
+import model.Task;
 import service.TaskManager;
 
 public class TaskManagerFrame extends JFrame {
@@ -63,10 +63,11 @@ public class TaskManagerFrame extends JFrame {
 			}
 
 			this.taskManager.addTask(title);
-			this.taskListModel.addElement("[Pendiente] " + title);
+			this.refreshTaskList();
 			this.taskInput.setText("");
 			this.taskInput.requestFocus();
 		});
+
 		this.completeButton.addActionListener(e -> {
 			int selectedIndex = this.taskList.getSelectedIndex();
 
@@ -78,13 +79,12 @@ public class TaskManagerFrame extends JFrame {
 			boolean completed = this.taskManager.completeTask(selectedIndex);
 
 			if (completed) {
-				Task task = this.taskManager.getTasks().get(selectedIndex);
-				this.taskListModel.setElementAt("[Completada] " + task.getTitle(), selectedIndex);
+				this.refreshTaskList();
 			} else {
 				JOptionPane.showMessageDialog(this, "No se pudo completar la tarea.");
 			}
 		});
-		
+
 		inputPanel.add(this.taskInput);
 		inputPanel.add(this.addButton);
 
@@ -94,5 +94,21 @@ public class TaskManagerFrame extends JFrame {
 		this.add(titleLabel, BorderLayout.NORTH);
 		this.add(scrollPane, BorderLayout.CENTER);
 		this.add(bottomPanel, BorderLayout.SOUTH);
+	}
+
+	private void refreshTaskList() {
+		this.taskListModel.clear();
+
+		for (Task task : this.taskManager.getTasks()) {
+			String status;
+
+			if (task.isCompleted()) {
+				status = "Completada";
+			} else {
+				status = "Pendiente";
+			}
+
+			this.taskListModel.addElement("[" + status + "] " + task.getTitle());
+		}
 	}
 }
